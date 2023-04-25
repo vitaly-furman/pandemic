@@ -26,7 +26,7 @@ OR
 
 ### /api-docs
 
-Access Swagger UI tool to see all the available endpoints and try to execute them.
+Can be accessed by going to `http://localhost/api-docs`. Swagger UI tool to see all the available endpoints and try to execute them.
 
 ### POST /record
 
@@ -47,7 +47,7 @@ Gets all the records of the specified user
 Example using curl:
 
 ```
-curl 'http://localhost/api/v1/record'
+curl 'http://localhost/api/v1/record/123'
 ```
 
 ### GET /notify/:userId
