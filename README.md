@@ -13,7 +13,7 @@ global pandemic.
 ## Running the server
 
 1. Clone this repository
-2. `docker-compose up` (or)
+2. `docker-compose up -D`
 
 OR
 * make sure you have mongodb instance running locally on port 27017
