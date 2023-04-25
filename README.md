@@ -14,12 +14,19 @@ global pandemic.
 
 1. Clone this repository
 2. `docker-compose up` (or)
-3. Install dependencies: `npm install`
-3. Build the project: `npm run build`
-4. Run with `npm start`
+
+OR
+* make sure you have mongodb instance running locally on port 27017
+1. Install dependencies: `npm install`
+2. Build the project: `npm run build`
+3. Run with `npm start`
 
 - By default the server will run on port 80, you can specify a different port by modifying .env file
 ## REST endpoints
+
+### /api-docs
+
+Access Swagger UI tool to see all the available endpoints and try to execute them.
 
 ### POST /record
 
