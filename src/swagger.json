@@ -1,0 +1,126 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pandemic API",
+    "version": "1.0.0",
+    "description": "An API for managing office records and notifying users of potential exposure during a pandemic."
+  },
+  "servers": [
+    {
+      "url": "http://localhost/api/v1",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/record": {
+      "post": {
+        "summary": "Create a record for arrival or departure from the office.",
+        "operationId": "createRecord",
+        "requestBody": {
+          "description": "Record information to be created.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "number",
+                    "default": 1,
+                    "description": "The ID of the user creating the record."
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["ARRIVAL", "DEPARTURE"],
+                    "description": "The status of the record (ARRIVAL or DEPARTURE)."
+                  }
+                },
+                "required": ["userId", "status"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Record created successfully."
+          },
+          "400": {
+            "description": "Invalid record data provided."
+          },
+          "500": {
+            "description": "An error occurred while creating the record."
+          }
+        }
+      }
+    },
+    "/record/{userId}": {
+      "get": {
+        "summary": "Get all records of a specified user.",
+        "operationId": "getUserRecords",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user to get records for.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Records retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An error occurred while retrieving records."
+          }
+        }
+      }
+    },
+    "/notify/{userId}": {
+      "get": {
+        "summary": "Get all users that were exposed during the last week to the specified user.",
+        "operationId": "getExposedUsers",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user to get exposed users for.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exposed users retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An error occurred while retrieving exposed users."
+          }
+        }
+      }
+    }
+  }
+}
