@@ -1,0 +1,18 @@
+{
+  "vms": [
+    {
+      "vm_id": "vm-a211de",
+      "tags": ["ci", "dev"]
+    },
+    {
+      "vm_id": "vm-c7bac01a07",
+      "name": "bastion"
+    }
+  ],
+  "fw_rules": [
+    {
+      "source_tag": "ssh",
+      "dest_tag": "dev"
+    }
+  ]
+}
